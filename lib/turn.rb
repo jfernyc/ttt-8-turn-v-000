@@ -21,20 +21,21 @@ def move(board, position, character="X")
     board[position]= character
 end
 
-def turn(board)
 
-  input = gets.strip
-  index =  input_to_index(input)
-  move(board, index)
   
-  display_board(board)
+  def turn(board)
+  puts "Please enter 1-9:"
+  input = gets.strip
+  index = input_to_index(input)
+  if valid_move?(board, index)
+    move(board, index)
+    display_board(board)
+  else
+    turn(board)
+  end
+end
 
-  valid_move?(board, index)
-  index.between?(0, 8) && board[index] ==" " || board[index] ==""
-  until index.between?(0, 8)
-end
-      puts "Please enter 1-9:"
-end
+ 
 
 
 
